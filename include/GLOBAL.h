@@ -18,6 +18,7 @@ const double pi = 3.1415926535897932385;
 #include "bmp.h"
 #include "ray.h"
 #include <Eigen/Dense>
+#include <thread>
 
 inline double deg2rad(double degree)
 {

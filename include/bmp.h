@@ -32,14 +32,14 @@ struct Pixel {
 class Canva {
 
 	Pixel** pixels;
-	unsigned int height, width;
+	unsigned int _height, _width;
 
 public:
 	Canva();
 	Canva(const unsigned int height, const unsigned int width);
 	~Canva()
 	{
-		for (int i = 0; i < height; i++)
+		for (int i = 0; i < _height; i++)
 		{
 			delete[] pixels[i];
 		}
@@ -49,6 +49,10 @@ public:
 	void setpixel(unsigned int x, unsigned int y, const Pixel&& p);
 	void savetofile(const std::string& file_path);
 	Pixel at(int i, int j) { return pixels[j][i]; }
+
+
+	unsigned int height() const { return _height; }
+	unsigned int width() const { return _width; }
 
 };
 

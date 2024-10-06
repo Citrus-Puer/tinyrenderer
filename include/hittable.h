@@ -50,7 +50,8 @@ class HitableList :public Hittable {
 public:
 
 
-	//HitableList() {}
+	HitableList() {}
+
 	HitableList(std::shared_ptr<Hittable>&& object) { objects.push_back(object); }
 
 	void clear() { objects.clear(); }

@@ -3,45 +3,40 @@
 #include "hittable.h"
 
 struct initCamera {
-	double aspect_ratio;
-	int image_width;
-
-	double focal_length;
-	double viewport_height;
-	Eigen::Vector3f center;
-
 
 	Eigen::Vector3f lookfrom;
 	Eigen::Vector3f lookat;
-	double vfov;
-	double aspect;
-	double focus_dist;
+	Eigen::Vector3f vup;
 
+
+	double vfov;	// 垂直视场角度
+	double aspect;	// 宽高比
+
+	double focus_dist;
+	double aperture;
 
 };
 
 
 class Camera {
-	double _aspect_ratio;
-	int _image_width;
-	double _focal_length;
-	double _viewport_height;
-	Eigen::Vector3f _center;
 
+	Eigen::Vector3f origin;	// 相机位置
+	Eigen::Vector3f lower_left_corner;	// 左下角坐标
+	Eigen::Vector3f horizontal;	// 每一个像素坐标的水平分量
+	Eigen::Vector3f vertical;	// 每一个像素坐标的竖直分量
 
+	Eigen::Vector3f u, v, w;
+
+	double focus_dist;
+	double aperture;
 
 public:
 	Camera();
 	Camera(const initCamera& init);
-	Camera(double ratio, int width, Eigen::Vector3f ct);
-	double aspect_ratio()const { return _aspect_ratio; }
-	int image_width() const { return _image_width; }
 
-	double focal_length() const { return _focal_length; }
-	double viewport_height() const { return _viewport_height; }
 
-	Eigen::Vector3f center() const { return _center; }
 
-	Ray get_ray(double s, double v);
+	void get_ray(double s, double v, Ray& r);
 };
+
 
